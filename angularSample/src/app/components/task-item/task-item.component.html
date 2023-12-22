@@ -1,6 +1,10 @@
-<p (click)="onDelete()">
-    {{task.id}}<br/>
-    {{task.text}}<br/>
-    {{task.day}}<br/>
-    {{task.reminder}}<br/>
+<p
+    [ngClass]="{reminder: task.reminder}"
+    (click)="onDelete()"
+    (dblclick)="onDoubleClick()"
+    >
+        {{task.id}}<br/>
+        {{task.text}}<br/>
+        {{task.day}}<br/>
+        {{task.reminder}}<br/>
 </p>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UiService } from 'src/app/services/ui.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +10,18 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   title:string = 'Task Tracker';
+  showAddTask!:boolean;
+  subscription!: Subscription;
+
+  constructor(private uiService:UiService, private router:Router) {
+    this.subscription = this.uiService.onToggle().subscribe(val => this.showAddTask = val);
+  }
 
   toggleAddTask() {
-    console.warn("Btn click detected from header...");
+    this.uiService.toggleAddTask();
+  }
+
+  hasRoute(route:String) {
+    return this.router.url === route;
   }
 }

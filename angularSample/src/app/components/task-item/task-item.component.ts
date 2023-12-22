@@ -9,8 +9,13 @@ import { Task } from 'src/app/Task';
 export class TaskItemComponent {
   @Input() task!: Task;
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
 
   onDelete() {
-    this.onDeleteTask.emit(this.task);
+    // this.onDeleteTask.emit(this.task);
+  }
+
+  onDoubleClick() {
+    this.onToggleReminder.emit(this.task);
   }
 }
